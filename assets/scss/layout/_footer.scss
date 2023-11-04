@@ -1,0 +1,10 @@
+footer{
+    background-color: $primary_color;
+    padding: 20px 0;
+    .copyright{
+        font-size: 25px;
+        color: $secondary_color;
+        text-align: center;
+        margin-bottom: 0;
+    }
+}

@@ -1,0 +1,64 @@
+
+header{
+    nav{
+        background-color: $primary_color;
+        .navbar-brand{
+            color: $secondary_color;
+            font-size: 30px ;
+        }
+        .nav-link{
+            color: $secondary_color;
+            font-size: 20px;
+            transition: all 0.5s;
+        }
+        .nav-link:hover{
+            color: $color_hover;
+        }
+        input:focus{
+            outline: 1px solid $color_hover;
+        }
+        .form-control:focus{
+            outline: none !important;
+            border: none !important;
+            box-shadow:rgba(13, 110, 253, 0.25) 0px 0px 0px 0rem;
+        }
+        .btn{
+            background-color: $primary_color;
+            border: 1px solid $secondary_color;
+            color: $secondary_color;
+            transition: all 0.5s;
+        }
+        .btn:hover{
+            background-color: $secondary_color;
+            color: $primary_color;
+        }
+        .navbar-toggler {
+            background-color: $secondary_color;
+        }
+        .fa-cart-shopping{
+            font-size: 25px;
+            color: $secondary_color; 
+            padding-left: 20px;
+            position: relative;
+            @media screen and (max-width: 992px) {
+                display: none;
+            }
+        }
+        .fa-cart-shopping::after{
+            content: "1";
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            font-size: 15px;
+            background-color: yellow;
+            color: rgb(240, 105, 105);
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            border-radius: 50%;
+            
+        }
+    }
+
+}
