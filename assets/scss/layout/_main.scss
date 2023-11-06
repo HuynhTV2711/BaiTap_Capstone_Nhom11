@@ -1,0 +1,20 @@
+main{
+    background-color:  #3E3E3F;
+    color: $secondary_color ;
+    padding-top: 100px;
+    height: 100vh; 
+    .container{
+        .heading_container{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        .modal-title{
+            color: #3E3E3F;
+        }
+        .modal-dialog{
+            color: #3E3E3F;
+        }
+    }
+    
+}
