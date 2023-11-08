@@ -53,109 +53,111 @@
       <div class="container">
         <h2>Register</h2>
         <div class="form_input">
+          <form onsubmit="validation()">
             <div class="row">
-                <div class="mb-3 col-6">
-                  <label for="" class="form-label">Email</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    name=""
-                    id="email"
-                    aria-describedby="helpId"
-                    placeholder=""
-                  />
-                  <small id="smallEmail" class="form-text text-muted"></small>
-                </div>
-                <div class="mb-3 col-6">
-                  <label for="" class="form-label">Name</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    name=""
-                    id="name"
-                    aria-describedby="helpId"
-                    placeholder=""
-                  />
-                  <small id="smallName" class="form-text text-muted"></small>
-                </div>
+              <div class="mb-3 col-6">
+                <label for="" class="form-label">Email</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name=""
+                  id="email"
+                  aria-describedby="helpId"
+                  placeholder=""
+                />
+                <small id="smallEmail" class="form-text"></small>
               </div>
-              <div class="row">
-                <div class="mb-3 col-6">
-                  <label for="" class="form-label">Password</label>
-                  <input
-                    type="password"
-                    class="form-control"
-                    name=""
-                    id="pass"
-                    aria-describedby="helpId"
-                    placeholder=""
-                  />
-                  <small id="smallPass" class="form-text text-muted"></small>
-                </div>
-                <div class="mb-3 col-6">
-                  <label for="" class="form-label">Phone</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    name=""
-                    id="phone"
-                    aria-describedby="helpId"
-                    placeholder=""
-                  />
-                  <small id="smallPhone" class="form-text text-muted"></small>
-                </div>
+              <div class="mb-3 col-6">
+                <label for="" class="form-label">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name=""
+                  id="name"
+                  aria-describedby="helpId"
+                  placeholder=""
+                />
+                <small id="smallName" class="form-text"></small>
               </div>
-              <div class="row">
-                <div class="mb-3 col-6">
-                  <label for="" class="form-label">Password confirm</label>
-                  <input
-                    type="password"
-                    class="form-control"
-                    name=""
-                    id="passConfirm"
-                    aria-describedby="helpId"
-                    placeholder=""
-                  />
-                  <small id="smallPassConfirm" class="form-text text-muted"></small>
-                </div>
-                <div class="mb-3 col-6 row my-auto ms-2">
-                  <label for="" class="form-label">Gender</label>
-      
-                  <div class="form-check col-3">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="flexRadioDefault"
-                      id="flexRadioDefault1"
-                      value="true"
-                    />
-                    <label class="form-check-label" for="flexRadioDefault1">
-                      Male
-                    </label>
-                  </div>
-                  <div class="form-check col-3">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="flexRadioDefault"
-                      id="flexRadioDefault2"
-                      value="false"
-                      checked
-                    />
-                    <label class="form-check-label" for="flexRadioDefault2">
-                      Female
-                    </label>
-                  </div>
-                </div>
+            </div>
+            <div class="row">
+              <div class="mb-3 col-6">
+                <label for="" class="form-label">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  name=""
+                  id="password"
+                  aria-describedby="helpId"
+                  placeholder=""
+                />
+                <small id="smallPass" class="form-text"></small>
               </div>
-              <div class="row">
-                <div class="col-10"></div>
-                <button class="btn btn-dark col-2">Submit</button>
+              <div class="mb-3 col-6">
+                <label for="" class="form-label">Phone</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name=""
+                  id="phone"
+                  aria-describedby="helpId"
+                  placeholder=""
+                />
+                <small id="smallPhone" class="form-text"></small>
               </div>
+            </div>
+            <div class="row">
+              <div class="mb-3 col-6">
+                <label for="" class="form-label">Password confirm</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  name=""
+                  id="passConfirm"
+                  aria-describedby="helpId"
+                  placeholder=""
+                />
+                <small
+                  id="smallPassConfirm"
+                  class="form-text"></small>
+              </div>
+              <div class="mb-3 col-2 row">
+                <label for="" class="form-label">Gender</label>
+                <select class="form-select ms-2" name="" id="gender">
+                  <option selected value="true">Male</option>
+                  <option value="false">Female</option> 
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-10"></div>
+              <button class="btn btn-dark col-2" type="submit">Submit</button>
+            </div>
+          </form>
         </div>
-        
       </div>
     </main>
+    <!-- TOAST -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div
+        id="liveToast"
+        class="toast"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="toast-header">
+          <strong class="me-auto">Thông báo</strong>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="toast-body bg-black bg-opacity-75 text-light"></div>
+      </div>
+    </div>
     <!-- FOOTER -->
     <footer>
       <p class="copyright">© 2023. All rights reserved.</p>
@@ -172,5 +174,9 @@
       integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js" integrity="sha512-WrdC3CE9vf1nBf58JHepuWT4x24uTacky9fuzw2g/3L9JkihgwZ6Cfv+JGTtNyosOhEmttMtEZ6H3qJWfI7gIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="../controller/validation.js"></script>
+    <script src="../model/Register.js"></script>
+    <script src="../controller/register.js"></script>
   </body>
 </html>
