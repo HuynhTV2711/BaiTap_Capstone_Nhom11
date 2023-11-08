@@ -147,9 +147,12 @@
         <div class="product_container"></div>
       </div>
     </section>
+    <!-- FOOTER -->
     <footer>
       <p class="copyright">© 2023. All rights reserved.</p>
     </footer>
+    <!-- BACK TO TOP -->
+    <a href="#" title="Back To Top" class="scrollToTop" style="display: inline;"><i class="fa-solid fa-angle-up"></i></a>
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
       integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
@@ -167,6 +170,35 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <!-- jquery.min -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+    <!-- backtotop -->
+    <script>
+      $(document).ready(function () {
+        //Check to see if the window is top if not then display button
+        $(window).scroll(function () {
+          if ($(this).scrollTop() > 100) {
+            $(".scrollToTop").fadeIn();
+          } else {
+            $(".scrollToTop").fadeOut();
+          }
+        });
+        //Click event to scroll to top
+        $(".scrollToTop").click(function () {
+          $("html, body").animate({ scrollTop: 0 }, 100);
+          return false;
+        });
+      });
+      //count up
+      $(".counter").countUp({
+        time: 2500,
+        delay: 10,
+      });
+    </script>
     <script src="./customer/controller/index.js"></script>
   </body>
 </html>
