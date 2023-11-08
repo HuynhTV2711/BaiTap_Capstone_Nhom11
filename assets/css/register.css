@@ -100,4 +100,7 @@ main .form-check {
 }
 main .form-check .form-check-input {
   margin-right: 10px;
+}
+main small {
+  color: red !important;
 }/*# sourceMappingURL=register.css.map */
