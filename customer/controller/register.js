@@ -1,59 +1,62 @@
-let validation = ()=>{
-    event.preventDefault();
-    var user = new Register();
-    var isValid = true;
-    let arrSmall = document.querySelectorAll("small");
-    let arrInput = document.querySelectorAll("input, select");
-    console.log(arrInput);
-    for (let index = 0; index < arrInput.length; index++) {
-        let valueInput = document.getElementById(arrInput[index].id).value;
-        user[arrInput[index].id] = valueInput; 
-    }
+let validation = () => {
+  var user = new Register();
+  var isValid = true;
+  let arrSmall = document.querySelectorAll("small");
+  let arrInput = document.querySelectorAll("input, select");
 
+  for (let index = 0; index < arrInput.length; index++) {
+    let valueInput = document.getElementById(arrInput[index].id).value;
+    
+    if (arrInput[index].id == "email") {
+      isValid &=
+        checkEmptyValue(valueInput, arrSmall[index].id) &&
+        checkEmailValue(valueInput, arrSmall[index].id);
+    }else if (arrInput[index].id == "name") {
+      isValid &=
+        checkEmptyValue(valueInput, arrSmall[index].id) &&
+        checkTextValue(valueInput, arrSmall[index].id);
+    }else if (arrInput[index].id == "password") {
+      isValid &=
+        checkEmptyValue(valueInput, arrSmall[index].id) &&
+        checkStrongPwd(valueInput, arrSmall[index].id);
+    }else if(arrInput[index].id == "phone"){
+        isValid &=
+        checkEmptyValue(valueInput, arrSmall[index].id) &&
+        checkNumberValue(valueInput, arrSmall[index].id);
+    }else if (arrInput[index].id == "passConfirm") {
+        isValid &=
+          confirmPassword(valueInput, arrSmall[index].id);
+      } 
+    user[arrInput[index].id] = valueInput;
+  }
+  if (isValid) {
+    return user;
+  }
+};
+function addUser(){
+  event.preventDefault();
+    var userNew = validation();
+    console.log(userNew);
     let promise = axios({
-        method: 'POST',
-        url: 'https://shop.cyberlearn.vn/api/Users/signup',
-        data: user
-    })
-    promise
-    .then((result)=>{
-        console.log(result.data);
-        openToast(result.data.message);
-        // alert(result.data.message)
-    })
-    .catch((err)=>{
-        console.log(err.message);
-        openToast(err.message)
-        // alert(err.message)
-    })
-    // for (let i = 0; i < arrInput.length; i++) {
-    //     var valueInput = document.getElementById(arrInput[i].id).value;
-    //     if (arrInput[i] == "email") {
-    //         isValid &=
-    //           checkEmptyValue(valueInput, arrSmall[i]) &&
-    //           checkEmailValue(valueInput, arrSmall[i]);
-    //       }else if(arrInput[i] == "name"){
-    //         isValid &=
-    //         checkEmptyValue(valueInput, arrSmall[i]) &&
-    //         checkTextValue(valueInput, arrSmall[i]);
-    //       }else if(arrInput[i] == "pass" || arrInput[i] == "passConfirm"){
-    //         isValid &=
-    //         checkEmptyValue(valueInput, arrSmall[i]) &&
-    //         checkEmailValue(valueInput, arrSmall[i]);
-    //       }
-    //       user[arrInput[i]] = valueInput;
-    // }  
-    // if (isValid) {
-    //     console.log(user);
-    //     return user;
-    //   }
+            method: 'POST',
+            url: 'https://shop.cyberlearn.vn/api/Users/signup',
+            data: userNew
+        })
+        promise
+        .then((result)=>{
+            console.log(result.data.content);
+            openToast(result.data.message);
+        })
+        .catch((err)=>{
+            console.log(err);
+            openToast("Đăng ký không thành công vui lòng thử lại")
+        })
+}
+function openToast(string) {
+  document.querySelector(".toast-body").innerHTML = string;
+  const toastLiveExample = document.getElementById("liveToast");
+  const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+  toastBootstrap.show();
 }
 
-function openToast(string) {
-    document.querySelector(".toast-body").innerHTML = string;
-    // gọi tới layout toast
-    const toastLiveExample = document.getElementById("liveToast");
-    // thêm toastBootstrap để có thể sử dụng phương thức show giúp mở toast lên
-    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample);
-    toastBootstrap.show();
-  }
+
