@@ -1,0 +1,80 @@
+.detail{
+    padding-top: 100px;
+    background-color: #3E3E3F;
+    .container{
+        .detail_container{
+            display: flex;
+            align-items: center;
+            .detail_img{
+                width: 400px;
+                height: 400px;
+                img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }   
+            .detail_content{
+                padding-left: 100px;
+                width: 60%;
+                .product_name{
+                    font-size: 45px;
+                    color: $secondary_color;
+                }   
+                .desc{
+                    font-size: 23px;
+                    color: $secondary_color;
+                }
+                .size_title{
+                    font-size: 32px;
+                    color: red;
+                }
+                .size_container{
+                    display: flex;
+                    .size{
+                        width: 50px;
+                        height: 50px;
+                        line-height: 50px;
+                        text-align: center;
+                        border-radius: 5px;
+                        background-color: $primary_color;
+                        color: $secondary_color;
+                        margin-right: 20px;
+                    }
+                }
+                .quantity{
+                    padding-bottom: 30px;
+                    .btnSub{
+                        width: 45px;
+                        height: 45px;
+                        font-size: 20px;
+                    }
+                    #quantity{
+                        width: 50px;
+                        height: 50px;
+                        line-height: 50px;
+                        text-align: center;
+                        border-radius: 5px;
+                        background-color: $primary_color;
+                        color: $secondary_color;
+                        margin: 0 5px;
+                    }
+                    .btnPlus{
+                        width: 45px;
+                        height: 45px;
+                        font-size: 20px;
+                    }
+
+                }
+                .price{
+                    font-size: 30px;
+                    margin-top: 20px;
+                    color: red;
+                }
+                button{
+
+                }
+            }
+        }  
+    }
+}
