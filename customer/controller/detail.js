@@ -15,8 +15,7 @@ window.onload = function(){
                 let product = arrResult[index];
                 console.log(product);
                 renderDetail(product);
-            }
-            
+            }   
         }
     })
     .catch((err)=>{
@@ -49,9 +48,9 @@ let renderDetail = (product)=>{
                     </div>
                     <p class="price">${product.price}$</p>
                     <div class="quantity">
-                        <button class="btn btn-primary btnSub">-</button>
+                        <button class="btn btn-primary btnSub" onclick="subQuantity()">-</button>
                          <label id="quantity">1</label>
-                         <button class="btn btn-primary btnPlus">+</button>
+                         <button class="btn btn-primary btnPlus" onclick="plusQuantity()">+</button>
                         </div>
                         <button class="btn btn-primary">Add to cart</button>
                     </div>
@@ -60,66 +59,22 @@ let renderDetail = (product)=>{
             </div>
     `;
     document.querySelector(".detail").innerHTML = content;
-    document.querySelector(".btnPlus").onclick = function(){
-       let vl =  document.querySelector("#quantity").innerHTML * 1;
-       vl +=1;
-       console.log(vl);
-       document.querySelector("#quantity").innerHTML = vl;
-    }
-    document.querySelector(".btnSub").onclick = function(){
-        let vl =  document.querySelector("#quantity").innerHTML * 1;
-        vl -=1;
-        console.log(vl);
-        document.querySelector("#quantity").innerHTML = vl;
-     }
+}
+function plusQuantity(){
+  let valueQuantity =  document.querySelector("#quantity").innerHTML * 1;
+    valueQuantity +=1;
+    document.querySelector("#quantity").innerHTML = valueQuantity;
+  
 }
 
-var arrProduct = [];
-function getValueProduct(){
-    var promise = axios({
-      mothod: "GET",
-      url: "https://shop.cyberlearn.vn/api/Product",
-    });
-    // .then khi lấy dữ liệu thành công status 200
-    // .catch khi lấy dữ liệu thất bại status 404
-    promise
-      .then(function (result) {
-        console.log(result);
-        arrProduct = result.data.content;
-        console.log(arrProduct);
-        renderListProduct(arrProduct);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+function subQuantity(){
+  let valueQuantity =  document.querySelector("#quantity").innerHTML * 1;
+  if(valueQuantity >=1){
+    valueQuantity -=1;
+    document.querySelector("#quantity").innerHTML = valueQuantity;
+  }else{
+    valueQuantity =1;
+    document.querySelector("#quantity").innerHTML = valueQuantity;
   }
-  function renderListProduct(array){
-    let content = "";
-    let length = array.length;
-    for (let i = 0; i < length; i++) {
-      let product = array[i];
-      content += `
-      
-      <a href="../view/detail.html?productid=${product.id}">
-      <div class="product_item">
-        <div class="img_container">
-          <img
-          src=${product.image}
-          alt=""
-          />
-        </div>
-        <p class="product_name">${product.name}</p>
-        <p class="product_desc">
-          ${product.description}
-        </p>
-        <div class="product_item_footer">
-          <p class="product_price">${product.price} $</p>
-          <button class="btnBuy"><i class="fa-solid fa-cart-shopping"></i> Mua ngay</button>
-        </div>
-      </div>
-    </a>
-          `;
-    }
-    document.querySelector(".product_container").innerHTML = content;
-  }
-  getValueProduct()
+ 
+}
