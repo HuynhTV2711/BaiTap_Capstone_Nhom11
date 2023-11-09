@@ -8,6 +8,10 @@ a {
   text-decoration: none;
 }
 
+.container {
+  max-width: 1140px;
+}
+
 header nav {
   background-color: #323232 !important;
 }

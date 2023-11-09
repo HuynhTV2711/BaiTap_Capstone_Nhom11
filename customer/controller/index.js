@@ -23,7 +23,7 @@ function getValueProduct(){
     for (let i = 0; i < length; i++) {
       let product = array[i];
       content += `
-      <a href="./customer/view/detail.html">
+      <a href="./customer/view/detail.html?productid=${product.id}">
       <div class="product_item">
         <div class="img_container">
           <img
