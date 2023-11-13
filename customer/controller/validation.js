@@ -29,7 +29,7 @@ function checkEmptyValue(value, smallId) {
       return true;
     } else {
       document.getElementById(smallId).innerHTML =
-        'Định dạng tên nhân viên chỉ chứa chữ cái';
+        'Định dạng tên nhân viên chỉ chứa chữ cái không dấu';
       return false;
     }
   }

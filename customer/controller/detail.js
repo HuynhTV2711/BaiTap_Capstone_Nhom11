@@ -1,36 +1,33 @@
-window.onload = function(){
-    const urlParams = new URLSearchParams(window.location.search);
-    const myParam = urlParams.get('productid');
-    console.log('params', myParam);
+function getDataProduct(productId){
     let promise = axios({
         method: 'GET',
-        url: `https://shop.cyberlearn.vn/api/Product`
+        url: `https://shop.cyberlearn.vn/api/Product/getbyid?id=${productId}`
     })
     promise
     .then((result)=>{
-        var arrResult =result.data.content;
-        console.log(arrResult);
-        for (let index = 0; index < arrResult.length; index++) {
-            if(arrResult[index].id == myParam){
-                let product = arrResult[index];
-                console.log(product);
-                renderDetail(product);
-            }   
-        }
+        console.log(result.data.content);
+        let product = result.data.content;
+        console.log(product.size);
+        renderDetail(result.data.content);
     })
     .catch((err)=>{
         console.log(err);
     })
+}
+window.onload = function(){
+    const urlParams = new URLSearchParams(window.location.search);
+    const myParam = urlParams.get('productid');
+    console.log('params', myParam);
+    getDataProduct(myParam);
 };
-
 let renderDetail = (product)=>{
     let content = '';
-    let contentSize ='';
-    let size = JSON.parse(product.size)
+    let size = product.size
     console.log(size);
-    for (let i = 0; i < size.length; i++) {  
+    let contentSize =`<button class="btn size active">${size[0]}</button>`;
+    for (let i = 1; i < size.length; i++) {  
         contentSize += `
-            <div class="size">${size[i]}</div>
+            <button class="btn size">${size[i]}</button>
         `;
     }
     content += `
@@ -48,11 +45,11 @@ let renderDetail = (product)=>{
                     </div>
                     <p class="price">${product.price}$</p>
                     <div class="quantity">
-                        <button class="btn btn-primary btnSub" onclick="subQuantity()">-</button>
+                        <button class="btn btn-secondary btnSub" onclick="subQuantity()">-</button>
                          <label id="quantity">1</label>
-                         <button class="btn btn-primary btnPlus" onclick="plusQuantity()">+</button>
+                         <button class="btn btn-secondary btnPlus" onclick="plusQuantity()">+</button>
                         </div>
-                        <button class="btn btn-primary">Add to cart</button>
+                        <button class="btn btn-secondary">Add to cart</button>
                     </div>
                    
                 </div>
@@ -63,8 +60,8 @@ let renderDetail = (product)=>{
 function plusQuantity(){
   let valueQuantity =  document.querySelector("#quantity").innerHTML * 1;
     valueQuantity +=1;
-    document.querySelector("#quantity").innerHTML = valueQuantity;
-  
+    document.querySelector("#quantity").innerHTML = valueQuantity; 
+    document.querySelector(".btnSub").disabled = false;
 }
 
 function subQuantity(){
@@ -74,7 +71,6 @@ function subQuantity(){
     document.querySelector("#quantity").innerHTML = valueQuantity;
   }else{
     valueQuantity =1;
-    document.querySelector("#quantity").innerHTML = valueQuantity;
-  }
- 
+    document.querySelector(".btnSub").disabled = true;
+  } 
 }
