@@ -23,7 +23,7 @@
                 }
                 .size_title{
                     font-size: 32px;
-                    color: red;
+                    color: $color_price;
                 }
                 .size_container{
                     display: flex;
@@ -70,7 +70,7 @@
                 .price{
                     font-size: 30px;
                     margin-top: 20px;
-                    color: red;
+                    color: $color_price;
                 }
                 button{
 
