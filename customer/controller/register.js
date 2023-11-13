@@ -49,7 +49,13 @@ function addUser(){
         })
         .catch((err)=>{
             console.log(err);
-            openToast("Đăng ký không thành công vui lòng thử lại")
+            if (err.message == 'Request failed with status code 415') {
+            openToast("Đăng ký không thành công vui lòng kiểm tra dữ liệu nhập");
+            }else if(err.message == 'Request failed with status code 400'){
+              openToast(err.response.data.message);
+            }else{
+              openToast(err.message);
+            }
         })
 }
 function openToast(string) {
