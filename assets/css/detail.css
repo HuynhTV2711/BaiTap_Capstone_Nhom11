@@ -99,7 +99,7 @@ header nav .fa-cart-shopping::after {
 }
 .detail .container .detail_container .detail_content .size_title {
   font-size: 32px;
-  color: red;
+  color: #FF9921 !important;
 }
 .detail .container .detail_container .detail_content .size_container {
   display: flex;
@@ -145,7 +145,7 @@ header nav .fa-cart-shopping::after {
 .detail .container .detail_container .detail_content .price {
   font-size: 30px;
   margin-top: 20px;
-  color: red;
+  color: #FF9921 !important;
 }
 .product {
   background-color: #3E3E3F;

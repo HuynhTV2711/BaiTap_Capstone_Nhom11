@@ -1,4 +1,3 @@
-var arrProduct = [];
 function getValueProduct(){
     var promise = axios({
       mothod: "GET",
@@ -23,7 +22,7 @@ function getValueProduct(){
     for (let i = 0; i < length; i++) {
       let product = array[i];
       content += `
-      <a href="../../customer/view/detail.html?productid=${product.id}">
+      <a href="./customer/view/detail.html?productid=${product.id}" class="linkProduct">
       <div class="product_item">
         <div class="img_container">
           <img
