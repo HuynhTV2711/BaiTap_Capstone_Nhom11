@@ -138,6 +138,28 @@
         <div class="product_title">
           <h2>PRODUCT</h2>
         </div>
+        <div class="product_filter">
+          <div class="row">
+            <div class="mb-3 col-3">
+              <label for="" class="form-label">Sắp sếp theo giá</label>
+              <select class="form-select form-select-lg selectSort" name="" id="" onchange="sort()">
+                <option selected value="all">Mặc định</option>
+                <option value="giam">Giá giảm</option>
+                <option value="tang">Giá tăng</option>
+              </select>
+            </div>
+            <div class="mb-3 col-3">
+              <label for="" class="form-label">Lọc theo hãng</label>
+              <select class="form-select form-select-lg selectFilter" name="" id="" onchange="fillter()">
+                <option selected value="all">Tất cả</option>
+                <option value="adidas">Adidas</option>
+                <option value="nike">Nike</option>
+                <option value="vans">Vans</option>
+                <option value="converse">Converse</option>
+              </select>
+            </div>  
+          </div>
+        </div>
         <div class="product_container"></div>
       </div>
     </section>
