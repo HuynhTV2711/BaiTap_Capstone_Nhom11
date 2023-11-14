@@ -59,8 +59,7 @@ function fillter() {
       renderListProduct(arrFilter);
     }
     if (selectValue == "all") {
-      getValueProduct();
-      return arrProduct;
+      renderListProduct(arrProduct)
     }
   }
 }

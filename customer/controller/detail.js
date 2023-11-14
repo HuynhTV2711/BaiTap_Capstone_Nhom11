@@ -1,36 +1,38 @@
-function getDataProduct(productId){
-    let promise = axios({
-        method: 'GET',
-        url: `https://shop.cyberlearn.vn/api/Product/getbyid?id=${productId}`
+// Hàm lấy dữ liệu của 1 product thông qua id
+function getDataProduct(productId) {
+  let promise = axios({
+    method: "GET",
+    url: `https://shop.cyberlearn.vn/api/Product/getbyid?id=${productId}`,
+  });
+  promise
+    .then((result) => {
+      console.log(result.data.content);
+      let product = result.data.content;
+      console.log(product.size);
+      renderDetail(result.data.content);
     })
-    promise
-    .then((result)=>{
-        console.log(result.data.content);
-        let product = result.data.content;
-        console.log(product.size);
-        renderDetail(result.data.content);
-    })
-    .catch((err)=>{
-        console.log(err);
-    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
-window.onload = function(){
-    const urlParams = new URLSearchParams(window.location.search);
-    const myParam = urlParams.get('productid');
-    console.log('params', myParam);
-    getDataProduct(myParam);
+window.onload = function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const myParam = urlParams.get("productid");
+  console.log("params", myParam);
+  getDataProduct(myParam);
 };
-let renderDetail = (product)=>{
-    let content = '';
-    let size = product.size
-    console.log(size);
-    let contentSize =`<button class="btn size active">${size[0]}</button>`;
-    for (let i = 1; i < size.length; i++) {  
-        contentSize += `
+// Hàm render Detail của 1 product
+let renderDetail = (product) => {
+  let content = "";
+  let size = product.size;
+  console.log(size);
+  let contentSize = `<button class="btn size active">${size[0]}</button>`;
+  for (let i = 1; i < size.length; i++) {
+    contentSize += `
             <button class="btn size">${size[i]}</button>
         `;
-    }
-    content += `
+  }
+  content += `
     <div class="container">
             <div class="detail_container row">
                 <div class="detail_img col-12 mx-auto col-sm-12 col-lg mx-sm-auto">
@@ -49,55 +51,59 @@ let renderDetail = (product)=>{
                          <label id="quantity">1</label>
                          <button class="btn btn-secondary btnPlus" onclick="plusQuantity()">+</button>
                         </div>
-                        <button class="btn btn-secondary">Add to cart</button>
+                        <button class="btn btn-secondary" onclick="addToCart()">Add to cart</button>
                     </div>
                    
                 </div>
             </div>
     `;
-    document.querySelector(".detail").innerHTML = content;
+  document.querySelector(".detail").innerHTML = content;
+};
+// Hàm tăng giá trị quantity
+function plusQuantity() {
+  let valueQuantity = document.querySelector("#quantity").innerHTML * 1;
+  valueQuantity += 1;
+  document.querySelector("#quantity").innerHTML = valueQuantity;
+  document.querySelector(".btnSub").disabled = false;
 }
-function plusQuantity(){
-  let valueQuantity =  document.querySelector("#quantity").innerHTML * 1;
-    valueQuantity +=1;
-    document.querySelector("#quantity").innerHTML = valueQuantity; 
-    document.querySelector(".btnSub").disabled = false;
+// Hàm giảm giá trị quantity
+function subQuantity() {
+  let valueQuantity = document.querySelector("#quantity").innerHTML * 1;
+  if (valueQuantity >= 1) {
+    valueQuantity -= 1;
+    document.querySelector("#quantity").innerHTML = valueQuantity;
+  } else {
+    valueQuantity = 1;
+    document.querySelector(".btnSub").disabled = true;
+  }
 }
 
-function subQuantity(){
-  let valueQuantity =  document.querySelector("#quantity").innerHTML * 1;
-  if(valueQuantity >=1){
-    valueQuantity -=1;
-    document.querySelector("#quantity").innerHTML = valueQuantity;
-  }else{
-    valueQuantity =1;
-    document.querySelector(".btnSub").disabled = true;
-  } 
-}
-function getValueProduct(){
-    var promise = axios({
-      mothod: "GET",
-      url: "https://shop.cyberlearn.vn/api/Product",
+// Hàm lấy danh sách product
+function getValueProduct() {
+  var promise = axios({
+    mothod: "GET",
+    url: "https://shop.cyberlearn.vn/api/Product",
+  });
+  // .then khi lấy dữ liệu thành công status 200
+  // .catch khi lấy dữ liệu thất bại status 404
+  promise
+    .then(function (result) {
+      console.log(result);
+      arrProduct = result.data.content;
+      console.log(arrProduct);
+      renderListProduct(arrProduct);
+    })
+    .catch(function (error) {
+      console.log(error);
     });
-    // .then khi lấy dữ liệu thành công status 200
-    // .catch khi lấy dữ liệu thất bại status 404
-    promise
-      .then(function (result) {
-        console.log(result);
-        arrProduct = result.data.content;
-        console.log(arrProduct);
-        renderListProduct(arrProduct);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
-  function renderListProduct(array){
-    let content = "";
-    let length = array.length;
-    for (let i = 0; i < length; i++) {
-      let product = array[i];
-      content += `
+}
+// Hàm render danh sách product
+function renderListProduct(array) {
+  let content = "";
+  let length = array.length;
+  for (let i = 0; i < length; i++) {
+    let product = array[i];
+    content += `
       <a href="./detail.html?productid=${product.id}" class="linkProduct">
       <div class="product_item">
         <div class="img_container">
@@ -117,7 +123,9 @@ function getValueProduct(){
       </div>
     </a>
           `;
-    }
-    document.querySelector(".product_container").innerHTML = content;
   }
-  getValueProduct()
+  document.querySelector(".product_container").innerHTML = content;
+}
+// Không sử dụng lại được hàm renderListProduct của index được vì khác đường dẫn đến trang detail
+
+getValueProduct();
