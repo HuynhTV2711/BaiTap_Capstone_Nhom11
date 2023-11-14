@@ -66,6 +66,7 @@ function fillter() {
 }
 /***********************Hàm sort **********************************/
 function sort(){
+  var selectValue = document.querySelector(".selectFilter").value = "all";
   var selectValue = document.querySelector(".selectSort").value;
   if (selectValue == "all") {
     getValueProduct();
