@@ -1,3 +1,4 @@
+// Hàm validation
 let validation = () => {
   var user = new Register();
   var isValid = true;
@@ -33,6 +34,7 @@ let validation = () => {
     return user;
   }
 };
+// Hàm thêm User(đăng ký)
 function addUser(){
   event.preventDefault();
     var userNew = validation();
@@ -58,6 +60,7 @@ function addUser(){
             }
         })
 }
+// Hàm mở lên thông báo khi có hành động xảy ra
 function openToast(string) {
   document.querySelector(".toast-body").innerHTML = string;
   const toastLiveExample = document.getElementById("liveToast");
