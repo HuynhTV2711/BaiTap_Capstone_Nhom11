@@ -158,6 +158,15 @@ header nav .fa-cart-shopping::after {
   text-align: center;
   margin-bottom: 50px;
 }
+.product .container .product_filter .form-label {
+  color: #fff !important;
+  font-size: 20px;
+  font-weight: 500;
+}
+.product .container .product_filter .form-select {
+  background-color: #323232 !important;
+  color: #fff !important;
+}
 .product .container .product_container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
